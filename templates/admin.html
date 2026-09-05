@@ -1,0 +1,5 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{font-family:Arial;padding:15px} table{width:100%;border-collapse:collapse} td,th{border:1px solid #ddd;padding:8px;font-size:13px}</style></head><body>
+<a href="/">← Home</a><h2>Leads - Buyer Inquiries</h2>
+<table><tr><th>Container</th><th>Buyer</th><th>Phone</th><th>City</th><th>Qty</th></tr>
+{% for l in leads %}<tr><td>{{l['title']}} - {{l['city']}} - ₹{{l['price']}}</td><td>{{l['buyer_name']}}</td><td><a href="tel:{{l['buyer_phone']}}">{{l['buyer_phone']}}</a></td><td>{{l['buyer_city']}}</td><td>{{l['buyer_qty']}}</td></tr>{% endfor %}
+</table></body></html>
