@@ -43,4 +43,10 @@ def seller():
         db=get_db(); db.execute("INSERT INTO containers (title,city,state,size,type,price,phone,seller_name) VALUES (?,?,?,?,?,?,?,?)",(request.form['title'],request.form['city'],request.form['state'],request.form['size'],request.form['type'],request.form['price'],request.form['phone'],request.form['seller']))
         db.commit(); return redirect('/')
     return render_template('seller.html')
+    @app.route('/clear-all')
+def clear_all():
+    db=get_db()
+    db.execute("DELETE FROM containers")
+    db.commit()
+    return "All Fake Deleted - <a href='/'>Go Home</a>"
 init_db()
