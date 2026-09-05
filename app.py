@@ -66,12 +66,7 @@ def seller():
         return redirect('/')
     return render_template('seller.html')
 
-@app.route('/clear-all')
-def clear_all():
-    db=get_db()
-    db.execute("DELETE FROM containers")
-    db.commit()
-    return "All Fake Deleted - Go to Home"
+
 
 init_db()
 
