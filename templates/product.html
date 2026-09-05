@@ -1,12 +1,33 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
-<style>body{font-family:Arial;padding:15px;background:#f8fafc}.box{background:#fff;padding:15px;border-radius:12px;border:1px solid #e2e8f0} input,select{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #cbd5e1}</style></head><body>
-<a href="/">← Back</a><div class="box" style="margin-top:10px">
-<h2>{{c['title']}}</h2><p>📍 {{c['city']}}, {{c['state']}}</p><p>Size: {{c['size']}} | Type: {{c['type']}}</p><h3>Price: ₹{{c['price']}}</h3><p>Seller: <b>{{c['seller_name']}}</b> ✔ Verified</p><p>Phone: {{c['phone']}}</p>
-<hr style="margin:15px 0"><h3>Send Inquiry - Get Best Price</h3>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;padding:15px;background:#f8fafc}
+.box{background:#fff;padding:15px;border-radius:12px;border:1px solid #e2e8f0}
+input,select{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #cbd5e1}
+</style>
+</head>
+<body>
+<a href="/">← Back</a>
+<div class="box" style="margin-top:10px">
+<h2>{{c['title']}}</h2>
+<p>📍 {{c['city']}}, {{c['state']}} | {{c['size']}} | {{c['type']}}</p>
+<h3>₹{{c['price']}}</h3>
+<p>Seller: <b>{{c['seller_name']}}</b> ✔ Verified</p>
+<hr style="margin:15px 0">
+<h3>Automatic Inquiry</h3>
 <form method="POST" action="/inquiry/{{c['id']}}">
 <input name="name" placeholder="Your Full Name" required>
 <input name="phone" placeholder="Your Mobile Number" required>
 <input name="city" placeholder="Your City" required>
-<select name="qty"><option>Qty: 1 Piece</option><option>Qty: 2-5 Pieces</option><option>Qty: 5+ Pieces</option></select>
-<button style="width:100%;padding:14px;background:#2563eb;color:#fff;border:none;border-radius:10px;margin-top:10px;font-weight:bold">SEND INQUIRY ON WHATSAPP</button>
-</form></div></body></html>
+<select name="qty">
+<option>Qty: 1 Piece</option>
+<option>Qty: 2-5 Pieces</option>
+<option>Qty: 5+ Pieces</option>
+</select>
+<button style="width:100%;padding:14px;background:#2563eb;color:#fff;border:none;border-radius:10px;margin-top:10px;font-weight:bold">SEND ON WHATSAPP AUTOMATIC</button>
+</form>
+</div>
+</body>
+</html>
