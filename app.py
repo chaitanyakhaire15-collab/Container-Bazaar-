@@ -32,18 +32,27 @@ def home():
     db=get_db()
     q=request.args.get('q','')
     city=request.args.get('city','')
+    
+    # FIX: Seller ka phone session se lo
+    my_phone = session.get('my_phone', '')
+
     if q:
-        cons=db.execute("SELECT * FROM containers WHERE paid=1 AND (city LIKE ? OR title LIKE ?) ORDER BY id DESC", (f'%{q}%',f'%{q}%')).fetchall()
+        cons=db.execute("SELECT * FROM containers WHERE paid=1 AND phone != ? AND (city LIKE ? OR title LIKE ?) ORDER BY id DESC", (my_phone, f'%{q}%',f'%{q}%')).fetchall()
     elif city:
-        cons=db.execute("SELECT * FROM containers WHERE paid=1 AND city LIKE ? ORDER BY id DESC", (f'%{city}%',)).fetchall()
+        cons=db.execute("SELECT * FROM containers WHERE paid=1 AND phone != ? AND city LIKE ? ORDER BY id DESC", (my_phone, f'%{city}%',)).fetchall()
     else:
-        cons=db.execute("SELECT * FROM containers WHERE paid=1 ORDER BY id DESC").fetchall()
+        cons=db.execute("SELECT * FROM containers WHERE paid=1 AND phone != ? ORDER BY id DESC", (my_phone,)).fetchall()
     return render_template('index.html', containers=cons)
 
 @app.route('/product/<int:id>')
 def product(id):
     db=get_db()
     c=db.execute("SELECT * FROM containers WHERE id=?",(id,)).fetchone()
+    
+    # FIX: Product page pe bhi "Similar containers" me khud ka hatao
+    # Agar tum similar dikha rahe ho to ye query use karo:
+    # similar = db.execute("SELECT * FROM containers WHERE city=? AND id != ? AND phone != ? LIMIT 4", (c['city'], id, session.get('my_phone',''))).fetchall()
+
     return render_template('product.html', c=c)
 
 @app.route('/inquiry/<int:id>', methods=['POST'])
@@ -52,6 +61,9 @@ def inquiry(id):
     con=db.execute("SELECT * FROM containers WHERE id=?",(id,)).fetchone()
     if not con:
         return redirect('/')
+    # Buyer apne aap ko inquiry na kar paye
+    if con['phone'] == session.get('my_phone',''):
+        return "Aap apne hi container pe inquiry nahi kar sakte"
     msg=f"Hello {con['seller_name']}, Need {con['title']} at {con['city']}. Buyer:{request.form['name']} {request.form['phone']}"
     return redirect(f"https://wa.me/91{con['phone']}?text={msg}")
 
@@ -61,12 +73,12 @@ def seller():
         db=get_db()
         d=request.form
         db.execute("INSERT INTO containers (title,city,state,size,type,price,phone,seller_name,paid) VALUES (?,?,?,?,?,?,?,?,1)",
-        (d['title'],d['city'],d['state'],d['size'],d['type'],d['price'],d['phone'],d['seller']))
+        (d['title'],d['city'],d['state'],d['size'],d['type'],d['price'],d['phone'],d['seller'],))
         db.commit()
+        # FIX: Phone session me save
+        session['my_phone'] = d['phone']
         return redirect('/')
     return render_template('seller.html')
-
-
 
 init_db()
 
