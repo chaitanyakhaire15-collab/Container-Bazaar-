@@ -1,12 +1,22 @@
-<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#f5f5f5">
-<h2>Edit #{{c['id']}}</h2><a href="/my-containers">Back</a>
-<form method="POST" style="background:white;padding:20px;border-radius:12px;max-width:500px;margin-top:15px">
-Seller Name<br><input name="seller" value="{{c['seller_name']}}" style="width:100%;padding:8px;margin-bottom:10px"><br>
-Title<br><input name="title" value="{{c['title']}}" style="width:100%;padding:8px;margin-bottom:10px"><br>
-City<br><input name="city" value="{{c['city']}}" style="width:100%;padding:8px;margin-bottom:10px"><br>
-State<br><input name="state" value="{{c['state']}}" style="width:100%;padding:8px;margin-bottom:10px"><br>
-Size<br><select name="size" style="width:100%;padding:8px;margin-bottom:10px"><option {% if c['size']=='20ft' %}selected{% endif %}>20ft</option><option {% if c['size']=='40ft' %}selected{% endif %}>40ft</option><option {% if c['size']=='20ft & 40ft Both' %}selected{% endif %}>20ft & 40ft Both</option></select><br>
-Type<br><select name="type" style="width:100%;padding:8px;margin-bottom:10px"><option {% if c['type']=='Rent' %}selected{% endif %}>Rent</option><option {% if c['type']=='Sell' %}selected{% endif %}>Sell</option><option {% if c['type']=='Rent & Sell Both' %}selected{% endif %}>Rent & Sell Both</option></select><br>
-Price<br><input name="price" value="{{c['price']}}" style="width:100%;padding:8px;margin-bottom:15px"><br>
-<button style="width:100%;padding:12px;background:#1976d2;color:white;border:none;border-radius:6px">Update</button>
-</form></body></html>
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="font-family:sans-serif; background:#f2f4f7; margin:0; padding:0;">
+<div style="max-width:900px; margin:20px auto; padding:0 15px;">
+  <h2>Edit Container #{{c['id']}}</h2>
+  <a href="/my-containers">← Back to Dashboard</a>
+  <form method="POST" style="background:white; padding:25px 30px; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.08); margin-top:15px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+      <div><label style="font-weight:600;">Seller Name</label><br><input name="seller" value="{{c['seller_name']}}" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"></div>
+      <div><label style="font-weight:600;">Price</label><br><input name="price" value="{{c['price']}}" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"></div>
+    </div>
+    <div style="margin-top:15px;"><label style="font-weight:600;">Title</label><br><input name="title" value="{{c['title']}}" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:15px; margin-top:15px;">
+      <div><label>City</label><br><input name="city" value="{{c['city']}}" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"></div>
+      <div><label>State</label><br><input name="state" value="{{c['state']}}" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"></div>
+      <div><label>Size</label><br><select name="size" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"><option {% if c['size']=='20ft' %}selected{% endif %}>20ft</option><option {% if c['size']=='40ft' %}selected{% endif %}>40ft</option><option>20ft & 40ft Both</option></select></div>
+      <div><label>Type</label><br><select name="type" style="width:100%; padding:12px; margin-top:6px; border:1px solid #ccc; border-radius:8px; box-sizing:border-box;"><option {% if c['type']=='Rent' %}selected{% endif %}>Rent</option><option {% if c['type']=='Sell' %}selected{% endif %}>Sell</option><option>Rent & Sell Both</option></select></div>
+    </div>
+    <button style="width:100%; margin-top:25px; padding:14px; background:#0d6efd; color:white; border:none; border-radius:10px; font-size:16px; font-weight:600;">Update Karo</button>
+  </form>
+</div>
+</body></html>
