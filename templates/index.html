@@ -1,44 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Container Bazaar - All India</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial;background:#f8fafc}
-.header{background:#0f172a;color:#fff;padding:18px;text-align:center}
-.search{width:92%;max-width:600px;padding:12px 18px;border-radius:25px;border:none;margin-top:10px}
-.city-bar{overflow-x:auto;white-space:nowrap;padding:12px;background:#fff;border-bottom:1px solid #e2e8f0}
-.city-bar a{padding:8px 15px;background:#f1f5f9;border-radius:20px;margin:4px;text-decoration:none;color:#000;font-size:14px;border:1px solid #e2e8f0;display:inline-block}
-.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin:10px}
-.btn{padding:9px 14px;border-radius:6px;text-decoration:none;font-size:14px;display:inline-block;margin-top:6px}
-.call{background:#fff;color:#16a34a;border:1px solid #16a34a}
-.enq{background:#2563eb;color:#fff}
-.sell-btn{display:block;margin:12px;background:#000;color:#fff;text-align:center;padding:13px;border-radius:10px;text-decoration:none;font-weight:bold}
-</style>
-</head>
-<body>
-<div class="header">
-<h2>CONTAINER BAZAAR</h2>
-<p style="font-size:12px;opacity:.8">All India B2B Marketplace - Automatic</p>
-<form><input class="search" name="q" placeholder="Search Mumbai 20ft"></form>
-</div>
-<div class="city-bar">
-<a href="/">All India</a>
-<a href="/?city=Mumbai">Mumbai</a>
-<a href="/?city=Mundra">Mundra</a>
-<a href="/?city=Chennai">Chennai</a>
-<a href="/?city=Delhi">Delhi</a>
-</div>
-<a class="sell-btn" href="/seller">+ POST CONTAINER FREE</a>
-{% for c in containers %}
-<div class="card">
-<h3>{{c['title']}}</h3>
-<p style="font-size:13px;color:gray">📍 {{c['city']}}, {{c['state']}} | {{c['size']}} | {{c['type']}} ✔ Verified</p>
-<p><b>₹ {{c['price']}}</b> | {{c['seller_name']}}</p>
-<a class="btn call" href="tel:{{c['phone']}}">Call</a>
-<a class="btn enq" href="/product/{{c['id']}}">Get Best Price</a>
-</div>
-{% endfor %}
-</body>
-  </html>
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{font-family:sans-serif;padding:15px;background:#f5f5f5}.top{background:white;padding:10px;border-radius:10px;display:flex;justify-content:space-between;margin-bottom:15px}.card{background:white;padding:15px;border-radius:12px;margin-bottom:12px}</style></head><body>
+<div class="top"><b>Container Bazaar</b><div>{% if session.my_phone %}<a href="/my-containers">My Dashboard</a> | {{session.my_phone}} | <a href="/logout">Logout</a>{% else %}<a href="/login">Login</a>{% endif %} | <a href="/seller">+ Sell</a></div></div>
+<form method="GET"><input name="q" placeholder="Search city..." value="{{request.args.get('q','')}}" style="padding:8px;width:70%"><button style="padding:8px">Search</button></form><br>
+{% for c in containers %}<div class="card"><b>{{c['title']}}</b> - {{c['city']}} | {{c['size']}} | {{c['type']}} | ₹{{c['price']}}<br><a href="/product/{{c['id']}}">View →</a></div>{% else %}<p>No containers found (apne wale hide kiye hue hain)</p>{% endfor %}
+</body></html>
