@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{font-family:Arial;padding:15px;background:#f8fafc}
-.box{background:#fff;padding:15px;border-radius:12px;border:1px solid #e2e8f0}
-input,select{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #cbd5e1}
-</style>
-</head>
-<body>
-<a href="/">← Home</a>
-<div class="box" style="margin-top:10px">
-<h2>Sell Container - Free All India</h2>
-<form method="POST">
-<input name="title" placeholder="Title Ex: 20ft Dry Good Condition" required>
-<input name="city" placeholder="City Ex: Mumbai" required>
-<input name="state" placeholder="State Ex: Maharashtra" required>
-<select name="size"><option>20ft</option><option>40ft</option><option>40ft HC</option></select>
-<select name="type"><option>Dry</option><option>Reefer</option><option>Open Top</option><option>Flat Rack</option></select>
-<input name="price" placeholder="Price Ex: 85000" required>
-<input name="phone" placeholder="Your WhatsApp Number" required>
-<input name="seller" placeholder="Company / Your Name" required>
-<button style="width:100%;padding:14px;background:#000;color:#fff;border:none;border-radius:10px;margin-top:10px;font-weight:bold">POST FREE - ALL INDIA</button>
-</form>
-</div>
-</body>
-</html>
+<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#f5f5f5">
+<h2>Add Container</h2><p>Login: {{my_phone}} | <a href="/my-containers">My Containers</a></p>
+<form method="POST" style="background:white;padding:20px;border-radius:12px;max-width:500px">
+Seller Name*<br><input name="seller" required style="width:100%;padding:8px;margin-bottom:10px"><br>
+Title* (e.g. 20ft Used Container)<br><input name="title" required style="width:100%;padding:8px;margin-bottom:10px"><br>
+City*<br><input name="city" placeholder="Mumbai" required style="width:100%;padding:8px;margin-bottom:10px"><br>
+State*<br><input name="state" placeholder="Maharashtra" required style="width:100%;padding:8px;margin-bottom:10px"><br>
+Size*<br><select name="size" style="width:100%;padding:8px;margin-bottom:10px"><option>20ft</option><option>40ft</option><option>20ft & 40ft Both</option></select><br>
+Type*<br><select name="type" style="width:100%;padding:8px;margin-bottom:10px"><option>Rent</option><option>Sell</option><option>Rent & Sell Both</option></select><br>
+Price* (e.g. 300/day)<br><input name="price" required style="width:100%;padding:8px;margin-bottom:15px"><br>
+<button type="submit" style="width:100%;padding:12px;background:green;color:white;border:none;border-radius:6px">Submit</button>
+</form></body></html>
